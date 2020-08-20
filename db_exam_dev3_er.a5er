@@ -1,0 +1,175 @@
+﻿# A5:ER FORMAT:13
+# A5:ER ENCODING:UTF8
+# A5:ER Mk-1 Copyright (C)2007 m.matsubara
+# A5:SQL Mk-2 Copyright (C)1997 m.matsubara
+#  https://a5m2.mmatsubara.com
+
+[Manager]
+ProjectName=
+Author=
+MaxEntityRowShow=1000
+ReadOnlyRecommend=0
+Page=Main
+PageInfo="Main",2,"A3Landscape",$FFFFFF
+LogicalView=1
+DecodeDomain=0
+ViewModePageIndividually=1
+ViewMode=2
+ViewFormat=0
+UseNondependenceDashLine=0
+FontName=Tahoma
+FontSize=6
+PaperSize=A4Landscape
+HeaderLeft=
+HeaderCenter=
+HeaderRight=
+FooterLeft=
+FooterCenter=
+FooterRight=
+ShowPageoutRelation=1
+DefaultPkName=%0:s_PKC
+DefaultPkIndexName=%0:s_PKI
+DefaultIndexName=%0:s_IX%1:d
+DefaultFkName=%0:s_FK%1:d
+SqlSeparator=0
+ShowTag=1
+ShowCommonAttributes=0
+
+[Entity]
+PName=product
+LName=商品
+Comment=
+TableOption=
+Page=MAIN
+Left=100
+Top=100
+Field="商品番号","product_id","integer","NOT NULL",0,"","",$FFFFFFFF,""
+Field="商品名","product_name","character varying(50)",,,"","",$FFFFFFFF,""
+Field="販売単価","price","numeric",,,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20200820135420
+Position="MAIN",100,100
+ZOrder=6
+
+[Entity]
+PName=sales
+LName=売上
+Comment=
+TableOption=
+Page=MAIN
+Left=700
+Top=100
+Field="売上番号","sales_id","integer","NOT NULL",0,"","",$FFFFFFFF,""
+Field="店舗番号","store_id","integer","NOT NULL",,"","",$FFFFFFFF,""
+Field="売上日時","sales_date","timestamp(6) without time zone",,,"","",$FFFFFFFF,""
+Field="売上合計金額","amount","numeric",,,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20200820135533
+Position="MAIN",700,100
+ZOrder=5
+
+[Entity]
+PName=sales_details
+LName=売上明細
+Comment=
+TableOption=
+Page=MAIN
+Left=400
+Top=100
+Field="売上番号","sales_id","integer","NOT NULL",0,"","",$FFFFFFFF,""
+Field="売上明細番号","sales_detail_id","integer","NOT NULL",1,"","",$FFFFFFFF,""
+Field="商品番号","product_id","integer","NOT NULL",,"","",$FFFFFFFF,""
+Field="売上数量","quantity","integer",,,"","",$FFFFFFFF,""
+Field="売上金額","amount","numeric",,,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20200820135612
+Position="MAIN",400,100
+ZOrder=4
+
+[Entity]
+PName=store
+LName=店舗
+Comment=
+TableOption=
+Page=MAIN
+Left=1000
+Top=100
+Field="店舗番号","store_id","integer","NOT NULL",0,"","",$FFFFFFFF,""
+Field="店舗名","store_name","character varying(50)",,,"","",$FFFFFFFF,""
+Field="郵便番号","postal_code","character varying(50)",,,"","",$FFFFFFFF,""
+Field="住所","address","character varying(50)",,,"","",$FFFFFFFF,""
+EffectMode=None
+Color=$000000
+BkColor=$FFFFFF
+ModifiedDateTime=20200820135500
+Position="MAIN",1000,100
+ZOrder=3
+
+[Relation]
+Entity1=product
+Entity2=sales_details
+RelationType1=1
+RelationType2=3
+Fields1=product_id
+Fields2=product_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,1738,5739,1043,R,R
+Dependence=0
+Caption=
+PName=
+LineMode=0
+Bar1=174
+Bar2=574
+Bar3=104
+TermPos1=R
+TermPos2=R
+ZOrder=0
+
+[Relation]
+Entity1=sales
+Entity2=sales_details
+RelationType1=1
+RelationType2=3
+Fields1=sales_id
+Fields2=sales_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,500,9500,400,R,R
+Dependence=1
+Caption=
+PName=
+LineMode=0
+Bar1=50
+Bar2=950
+Bar3=40
+TermPos1=R
+TermPos2=R
+ZOrder=1
+
+[Relation]
+Entity1=store
+Entity2=sales
+RelationType1=1
+RelationType2=3
+Fields1=store_id
+Fields2=store_id
+Cardinarity1=
+Cardinarity2=
+Position="MAIN",0,500,9500,500,R,R
+Dependence=0
+Caption=
+PName=
+LineMode=0
+Bar1=50
+Bar2=950
+Bar3=50
+TermPos1=R
+TermPos2=R
+ZOrder=2
